@@ -8,13 +8,24 @@ function Login() {
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
+  // Function to handle the form submission
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault(); // Prevent form refresh
+
     try {
-      const response = await axios.post('http://localhost:5001/api/login', { username, password });
-      localStorage.setItem('token', response.data.token); // Save the token
-      navigate('/dashboard'); // Redirect to dashboard
+      // Send POST request to backend
+      const response = await axios.post('http://localhost:5001/api/login', {
+        username,
+        password,
+      });
+
+      // If login is successful, store the JWT token in localStorage
+      localStorage.setItem('token', response.data.token);
+
+      // Redirect to the dashboard
+      navigate('/dashboard');
     } catch (error) {
+      // Set error message if login fails
       setError('Invalid username or password');
     }
   };

@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
+const cors = require('cors'); // Import CORS
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const Joi = require('joi'); // Import Joi for validation
@@ -21,6 +22,12 @@ if (!process.env.MONGO_URI || !process.env.JWT_SECRET) {
 
 const app = express();
 app.use(express.json());
+
+// Use CORS to allow requests from frontend (localhost:3000)
+app.use(cors({
+  origin: 'http://localhost:3000', // Replace with your frontend URL in production
+  credentials: true, // Allow credentials (like cookies) to be sent if needed
+}));
 
 // MongoDB connection
 mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
