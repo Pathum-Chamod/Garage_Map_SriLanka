@@ -1,7 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
-const cors = require('cors'); // Import CORS
+const cors = require('cors'); // Import CORS once here
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const Joi = require('joi'); // Import Joi for validation
@@ -25,7 +25,7 @@ app.use(express.json());
 
 // Use CORS to allow requests from frontend (localhost:3000)
 app.use(cors({
-  origin: 'http://localhost:3000', // Replace with your frontend URL in production
+  origin: 'http://localhost:3000', // Allow requests from frontend
   credentials: true, // Allow credentials (like cookies) to be sent if needed
 }));
 
@@ -40,7 +40,7 @@ mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopol
 // Rate limiting for login and registration
 const authLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 5, // Limit each IP to 5 requests per windowMs
+  max: 50, // Increase to 50 requests per 15 minutes during development
   message: 'Too many requests, please try again after 15 minutes',
 });
 
@@ -48,6 +48,7 @@ const authLimiter = rateLimit({
 app.get('/', (req, res) => {
   res.send('Garage Map API is running...');
 });
+
 
 // Register a new user with Joi validation and rate limiting
 app.post('/api/register', authLimiter, async (req, res) => {
