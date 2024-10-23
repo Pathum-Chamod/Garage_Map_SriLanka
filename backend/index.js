@@ -1,7 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
-const cors = require('cors'); // Import CORS once here
+const cors = require('cors'); // Import CORS
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const Joi = require('joi'); // Import Joi for validation
@@ -25,7 +25,7 @@ app.use(express.json());
 
 // Use CORS to allow requests from frontend (localhost:3000)
 app.use(cors({
-  origin: 'http://localhost:3000', // Allow requests from frontend
+  origin: ['http://localhost:3000', 'http://192.168.8.173:3000'], // Allow requests from frontend
   credentials: true, // Allow credentials (like cookies) to be sent if needed
 }));
 
@@ -48,7 +48,6 @@ const authLimiter = rateLimit({
 app.get('/', (req, res) => {
   res.send('Garage Map API is running...');
 });
-
 
 // Register a new user with Joi validation and rate limiting
 app.post('/api/register', authLimiter, async (req, res) => {
@@ -82,6 +81,7 @@ app.post('/api/register', authLimiter, async (req, res) => {
     // Send success response
     res.status(201).send('User registered successfully');
   } catch (error) {
+    console.error('Registration error:', error);
     res.status(400).send('Error occurred during registration');
   }
 });
@@ -109,6 +109,7 @@ app.post('/api/login', authLimiter, async (req, res) => {
     const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
     res.status(200).send({ token });
   } catch (error) {
+    console.error('Login error:', error);
     res.status(500).send('An error occurred during login');
   }
 });
@@ -126,6 +127,7 @@ app.post('/api/garages', authenticate, validateGarage, async (req, res) => {
     await garage.save();
     res.status(201).send(garage);
   } catch (error) {
+    console.error('Garage creation error:', error);
     res.status(400).send('An error occurred while saving the garage');
   }
 });
@@ -136,6 +138,7 @@ app.get('/api/garages', async (req, res) => {
     const garages = await Garage.find();
     res.status(200).send(garages);
   } catch (error) {
+    console.error('Fetching garages error:', error);
     res.status(500).send('An error occurred while retrieving garages');
   }
 });
@@ -146,6 +149,7 @@ app.get('/api/garages/city/:city', async (req, res) => {
     const garages = await Garage.find({ city: req.params.city });
     res.status(200).send(garages);
   } catch (error) {
+    console.error('Fetching garages by city error:', error);
     res.status(500).send('An error occurred while retrieving garages');
   }
 });
@@ -172,6 +176,7 @@ app.get('/api/garages/near', async (req, res) => {
     });
     res.status(200).send(garages);
   } catch (error) {
+    console.error('Fetching nearby garages error:', error);
     res.status(500).send('An error occurred while retrieving nearby garages');
   }
 });

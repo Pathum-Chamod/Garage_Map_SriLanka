@@ -8,7 +8,7 @@ import Login from './pages/Login';
 const ProtectedRoute = ({ children }) => {
   const token = localStorage.getItem('token');
   if (!token) {
-    return <Navigate to="/login" />;
+    return <Navigate to="/login" replace />;
   }
   return children;
 };
@@ -27,8 +27,8 @@ function App() {
             </ProtectedRoute>
           } 
         />
-        {/* Default route */}
-        <Route path="*" element={<Navigate to="/login" />} />
+        {/* Redirect any undefined routes to login */}
+        <Route path="*" element={<Navigate to="/login" replace />} />
       </Routes>
     </Router>
   );

@@ -7,24 +7,29 @@ const garageSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
+    trim: true,  // Remove any leading/trailing whitespace
   },
   // Address of the garage, required field
   address: {
     type: String,
     required: true,
+    trim: true,  // Remove any leading/trailing whitespace
   },
   // City in which the garage is located, required field
   city: {
     type: String,
     required: true,
+    trim: true,  // Remove any leading/trailing whitespace
   },
   // Contact number of the garage (not required)
   contactNumber: {
     type: String,
+    trim: true,  // Remove any leading/trailing whitespace
   },
   // List of services offered by the garage
   services: {
     type: [String], // An array of strings, e.g., ["Repair", "Towing"]
+    default: [],    // Default to an empty array if no services are specified
   },
   // Location information for the garage, includes type and coordinates
   location: {
@@ -36,6 +41,12 @@ const garageSchema = new mongoose.Schema({
     coordinates: {
       type: [Number], // Latitude and Longitude coordinates
       required: true,
+      validate: {
+        validator: function (coordinates) {
+          return coordinates.length === 2; // Ensure array has exactly 2 elements
+        },
+        message: 'Coordinates must have exactly two values: [longitude, latitude]',
+      },
     },
   },
 });

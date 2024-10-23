@@ -1,0 +1,44 @@
+/* Dashboard.css */
+
+.dashboard-container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9;
+  }
+  
+  .dashboard-title {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .dashboard-subtitle {
+    text-align: center;
+    margin-bottom: 15px;
+    color: #666;
+  }
+  
+  .loading-text {
+    text-align: center;
+    color: #999;
+    font-style: italic;
+  }
+  
+  .garage-list {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .garage-item {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .garage-item strong {
+    color: #333;
+  }
+  
