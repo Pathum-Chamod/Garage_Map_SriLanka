@@ -1,0 +1,72 @@
+/* Center the register container on the page */
+.register-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f9f9f9;
+    padding: 20px;
+  }
+  
+  /* Title of the register page */
+  .register-title {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #333;
+    font-weight: 600;
+  }
+  
+  /* Style the register form */
+  .register-form {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    gap: 15px;
+  }
+  
+  /* Input fields styling */
+  .register-input {
+    padding: 12px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+  }
+  
+  /* Focus effect on input fields */
+  .register-input:focus {
+    border-color: #5c6bc0;
+    outline: none;
+    box-shadow: 0 0 5px rgba(92, 107, 192, 0.5);
+  }
+  
+  /* Register button styling */
+  .register-button {
+    padding: 12px;
+    border-radius: 5px;
+    border: none;
+    background-color: #5c6bc0;
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  /* Hover effect for the register button */
+  .register-button:hover {
+    background-color: #3f51b5;
+  }
+  
+  /* Success and error messages styling */
+  .register-success {
+    color: #4caf50;
+    margin-top: 15px;
+    font-size: 0.9rem;
+  }
+  
+  .register-error {
+    color: #ff1744;
+    margin-top: 15px;
+    font-size: 0.9rem;
+  }
+  

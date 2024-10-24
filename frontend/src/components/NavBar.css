@@ -1,50 +1,51 @@
-/* NavBar.css */
-
+/* Basic styling for the navbar */
 .navbar {
-    background-color: #333;
-    padding: 10px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .navbar-list {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    gap: 15px;
-  }
-  
-  .navbar-item {
-    display: inline;
-  }
-  
-  .navbar-link {
-    color: white;
-    text-decoration: none;
-    font-size: 16px;
-    padding: 8px 12px;
-    transition: background-color 0.3s ease;
-  }
-  
-  .navbar-link:hover {
-    background-color: #555;
-    border-radius: 4px;
-  }
-  
-  .logout-button {
-    background-color: #ff4d4d;
-    border: none;
-    color: white;
-    font-size: 16px;
-    padding: 8px 12px;
-    cursor: pointer;
-    border-radius: 4px;
-    transition: background-color 0.3s ease;
-  }
-  
-  .logout-button:hover {
-    background-color: #ff1a1a;
-  }
-  
+  background-color: #333;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Styling the unordered list */
+.navbar-list {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+/* Styling individual items */
+.navbar-item {
+  margin-left: 1rem;
+}
+
+/* Styling the links */
+.navbar-link {
+  text-decoration: none;
+  color: white;
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.navbar-link:hover {
+  background-color: #555;
+  border-radius: 5px;
+}
+
+/* Styling the logout button */
+.logout-button {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border-radius: 5px;
+}
+
+.logout-button:hover {
+  background-color: #d32f2f;
+}

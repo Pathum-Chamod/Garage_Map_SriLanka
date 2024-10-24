@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom'; // Import Link for navigation to register page
 import './Login.css'; // Import the CSS file
 
 function Login() {
@@ -66,6 +66,11 @@ function Login() {
         <button type="submit" className="login-button">Login</button>
       </form>
       {error && <p className="login-error">{error}</p>}
+
+      {/* Add a link to navigate to the Register page */}
+      <div className="register-link">
+        <p>Don't have an account? <Link to="/register">Register here</Link></p>
+      </div>
     </div>
   );
 }

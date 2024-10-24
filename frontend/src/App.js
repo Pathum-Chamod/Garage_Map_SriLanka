@@ -3,6 +3,7 @@ import { Navigate, Route, BrowserRouter as Router, Routes } from 'react-router-d
 import NavBar from './components/NavBar';
 import Dashboard from './pages/Dashboard';
 import Login from './pages/Login';
+import Register from './pages/Register'; // Import the Register page
 
 // Protected Route Wrapper
 const ProtectedRoute = ({ children }) => {
@@ -19,6 +20,7 @@ function App() {
       <NavBar />
       <Routes>
         <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} /> {/* Add Register route */}
         <Route 
           path="/dashboard" 
           element={
