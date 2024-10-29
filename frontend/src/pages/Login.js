@@ -1,13 +1,15 @@
 import axios from 'axios';
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom'; // Import Link for navigation to register page
-import './Login.css'; // Import the CSS file
+import React, { useContext, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../context/AuthContext'; // Import AuthContext
+import './Login.css';
 
 function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
+  const { handleLogin } = useContext(AuthContext); // Access handleLogin from context
 
   // Function to handle the form submission
   const handleSubmit = async (e) => {
@@ -20,8 +22,8 @@ function Login() {
         password,
       });
 
-      // If login is successful, store the JWT token in localStorage
-      localStorage.setItem('token', response.data.token);
+      // Use the context's handleLogin to store the token
+      handleLogin(response.data.token);
 
       // Clear any existing error messages
       setError('');

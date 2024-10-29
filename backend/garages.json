@@ -1,0 +1,143 @@
+[
+    {
+      "name": "Galle Auto Care",
+      "district": "Galle",
+      "category": "Garages",
+      "city": "Galle",
+      "vehicleTypes": ["Car/Van", "Motorcycles"],
+      "phoneNumber": "+94 77 123 4567",
+      "email": "galleautocare@example.com",
+      "mailAddress": "123 Main Street, Galle 80000, Sri Lanka",
+      "location": {
+        "type": "Point",
+        "coordinates": [80.217, 6.0535]
+      }
+    },
+    {
+      "name": "Colombo Filling Station",
+      "district": "Colombo",
+      "category": "Filling Station",
+      "city": "Colombo",
+      "vehicleTypes": ["All Types"],
+      "phoneNumber": "+94 77 987 6543",
+      "email": "colombofs@example.com",
+      "mailAddress": "456 Station Road, Colombo 00100, Sri Lanka",
+      "location": {
+        "type": "Point",
+        "coordinates": [79.8612, 6.9271]
+      }
+    },
+    {
+      "name": "Nugegoda Car Wash",
+      "district": "Colombo",
+      "category": "Car Wash",
+      "city": "Nugegoda",
+      "vehicleTypes": ["Car/Van", "Bus"],
+      "phoneNumber": "+94 71 222 3333",
+      "email": "nugegoda_carwash@example.com",
+      "mailAddress": "789 High Level Road, Nugegoda 10250, Sri Lanka",
+      "location": {
+        "type": "Point",
+        "coordinates": [79.9585, 6.8521]
+      }
+    },
+    {
+      "name": "Kandy Tire Shop",
+      "district": "Kandy",
+      "category": "Tire Shop",
+      "city": "Kandy",
+      "vehicleTypes": ["Car/Van", "Three Wheelers"],
+      "phoneNumber": "+94 75 345 6789",
+      "email": "kandytire@example.com",
+      "mailAddress": "21 Peradeniya Road, Kandy 20000, Sri Lanka",
+      "location": {
+        "type": "Point",
+        "coordinates": [80.635, 7.2906]
+      }
+    },
+    {
+      "name": "Gampaha Battery Center",
+      "district": "Gampaha",
+      "category": "Battery Shop",
+      "city": "Negombo",
+      "vehicleTypes": ["Car/Van", "Motorcycles", "Bus"],
+      "phoneNumber": "+94 76 456 7890",
+      "email": "gampahabattery@example.com",
+      "mailAddress": "32 Church Road, Negombo 11500, Sri Lanka",
+      "location": {
+        "type": "Point",
+        "coordinates": [79.844, 7.2008]
+      }
+    },
+    {
+      "name": "Matara Auto Parts",
+      "district": "Matara",
+      "category": "Auto Parts Shop",
+      "city": "Matara",
+      "vehicleTypes": ["All Types"],
+      "phoneNumber": "+94 70 123 7890",
+      "email": "mataraautoparts@example.com",
+      "mailAddress": "10 Main Street, Matara 81000, Sri Lanka",
+      "location": {
+        "type": "Point",
+        "coordinates": [80.535, 5.9485]
+      }
+    },
+    {
+      "name": "Hambantota AC Service",
+      "district": "Hambantota",
+      "category": "Auto AC Service",
+      "city": "Hambantota",
+      "vehicleTypes": ["Car/Van"],
+      "phoneNumber": "+94 72 987 1234",
+      "email": "hambantotaac@example.com",
+      "mailAddress": "35 Park Lane, Hambantota 82000, Sri Lanka",
+      "location": {
+        "type": "Point",
+        "coordinates": [81.121, 6.124]
+      }
+    },
+    {
+      "name": "Jaffna Cushion Works",
+      "district": "Jaffna",
+      "category": "Cushion Works Center",
+      "city": "Jaffna",
+      "vehicleTypes": ["Three Wheelers", "Motorcycles"],
+      "phoneNumber": "+94 74 111 2222",
+      "email": "jaffnacushion@example.com",
+      "mailAddress": "67 Stanley Road, Jaffna 40000, Sri Lanka",
+      "location": {
+        "type": "Point",
+        "coordinates": [80.0088, 9.6615]
+      }
+    },
+    {
+      "name": "Ratnapura Paint Shop",
+      "district": "Ratnapura",
+      "category": "Paint Shop",
+      "city": "Ratnapura",
+      "vehicleTypes": ["Car/Van", "Three Wheelers"],
+      "phoneNumber": "+94 78 333 4444",
+      "email": "ratnapurapaint@example.com",
+      "mailAddress": "23 Gem Road, Ratnapura 70000, Sri Lanka",
+      "location": {
+        "type": "Point",
+        "coordinates": [80.399, 6.6828]
+      }
+    },
+    {
+      "name": "Trincomalee Vehicle Services",
+      "district": "Trincomalee",
+      "category": "Garages",
+      "city": "Trincomalee",
+      "vehicleTypes": ["All Types"],
+      "phoneNumber": "+94 73 555 6666",
+      "email": "trincomaleeservice@example.com",
+      "mailAddress": "2 Sea View Road, Trincomalee 31000, Sri Lanka",
+      "location": {
+        "type": "Point",
+        "coordinates": [81.231, 8.5922]
+      }
+    }
+  ]
+  

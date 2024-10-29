@@ -8,7 +8,12 @@
     "dev": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": ["express", "mongodb", "api", "garage"],
+  "keywords": [
+    "express",
+    "mongodb",
+    "api",
+    "garage"
+  ],
   "author": "Pathum",
   "license": "ISC",
   "dependencies": {
