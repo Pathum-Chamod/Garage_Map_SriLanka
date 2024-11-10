@@ -1,143 +1,342 @@
 [
+  {
+    "name": "Negombo Auto Hub",
+    "district": "Gampaha",
+    "category": "Garages",
+    "city": "Negombo",
+    "vehicleTypes": ["Car/Van", "Three Wheelers"],
+    "phoneNumber": "+94 77 100 2345",
+    "email": "negomboautohub@example.com",
+    "mailAddress": "56 Beach Road, Negombo 11500, Sri Lanka",
+    "location": {
+      "type": "Point",
+      "coordinates": [79.848, 7.208]
+    }
+  },
+  {
+    "name": "Kaduwela Fuel Station",
+    "district": "Colombo",
+    "category": "Filling Station",
+    "city": "Kaduwela",
+    "vehicleTypes": ["All Types"],
+    "phoneNumber": "+94 77 200 3456",
+    "email": "kaduwela_station@example.com",
+    "mailAddress": "78 Expressway Entrance, Kaduwela 10640, Sri Lanka",
+    "location": {
+      "type": "Point",
+      "coordinates": [79.9733, 6.9378]
+    }
+  },
+  {
+    "name": "Anuradhapura Car Wash",
+    "district": "Anuradhapura",
+    "category": "Car Wash",
+    "city": "Anuradhapura",
+    "vehicleTypes": ["Car/Van", "Bus"],
+    "phoneNumber": "+94 71 300 4567",
+    "email": "anuradhapura_carwash@example.com",
+    "mailAddress": "90 Main Street, Anuradhapura 50000, Sri Lanka",
+    "location": {
+      "type": "Point",
+      "coordinates": [80.4037, 8.3114]
+    }
+  },
+  {
+    "name": "Trincomalee Tire Works",
+    "district": "Trincomalee",
+    "category": "Tire Shop",
+    "city": "Trincomalee",
+    "vehicleTypes": ["Motorcycles", "Three Wheelers"],
+    "phoneNumber": "+94 75 400 5678",
+    "email": "trincomalee_tireworks@example.com",
+    "mailAddress": "12 Koneswaram Road, Trincomalee 31000, Sri Lanka",
+    "location": {
+      "type": "Point",
+      "coordinates": [81.2335, 8.5832]
+    }
+  },
+  {
+    "name": "Kalutara Battery Depot",
+    "district": "Kalutara",
+    "category": "Battery Shop",
+    "city": "Kalutara",
+    "vehicleTypes": ["Car/Van", "Motorcycles"],
+    "phoneNumber": "+94 76 500 6789",
+    "email": "kalutara_battery@example.com",
+    "mailAddress": "45 Riverside Road, Kalutara 12000, Sri Lanka",
+    "location": {
+      "type": "Point",
+      "coordinates": [79.9595, 6.5836]
+    }
+  },
+  {
+    "name": "Matale Auto Parts World",
+    "district": "Matale",
+    "category": "Auto Parts Shop",
+    "city": "Matale",
+    "vehicleTypes": ["All Types"],
+    "phoneNumber": "+94 70 600 7890",
+    "email": "matale_autoparts@example.com",
+    "mailAddress": "65 Hill Street, Matale 21000, Sri Lanka",
+    "location": {
+      "type": "Point",
+      "coordinates": [80.6212, 7.4672]
+    }
+  },
+  {
+    "name": "Badulla Auto AC Experts",
+    "district": "Badulla",
+    "category": "Auto AC Service",
+    "city": "Badulla",
+    "vehicleTypes": ["Bus", "Car/Van"],
+    "phoneNumber": "+94 72 700 8901",
+    "email": "badulla_acservice@example.com",
+    "mailAddress": "89 Temple Road, Badulla 90000, Sri Lanka",
+    "location": {
+      "type": "Point",
+      "coordinates": [81.0555, 6.9938]
+    }
+  },
+  {
+    "name": "Kurunegala Cushion Experts",
+    "district": "Kurunegala",
+    "category": "Cushion Works Center",
+    "city": "Kurunegala",
+    "vehicleTypes": ["Three Wheelers", "Motorcycles"],
+    "phoneNumber": "+94 74 800 9012",
+    "email": "kurunegala_cushion@example.com",
+    "mailAddress": "34 Kings Road, Kurunegala 60000, Sri Lanka",
+    "location": {
+      "type": "Point",
+      "coordinates": [80.367, 7.4863]
+    }
+  },
+  {
+    "name": "Moneragala Paint House",
+    "district": "Moneragala",
+    "category": "Paint Shop",
+    "city": "Moneragala",
+    "vehicleTypes": ["Car/Van", "Bus"],
+    "phoneNumber": "+94 78 900 1234",
+    "email": "moneragala_paint@example.com",
+    "mailAddress": "23 Railway Road, Moneragala 91000, Sri Lanka",
+    "location": {
+      "type": "Point",
+      "coordinates": [81.3406, 6.8723]
+    }
+  },
+  {
+    "name": "Vavuniya Vehicle Repair",
+    "district": "Vavuniya",
+    "category": "Garages",
+    "city": "Vavuniya",
+    "vehicleTypes": ["All Types"],
+    "phoneNumber": "+94 73 100 2345",
+    "email": "vavuniya_repair@example.com",
+    "mailAddress": "8 A9 Road, Vavuniya 43000, Sri Lanka",
+    "location": {
+      "type": "Point",
+      "coordinates": [80.4973, 8.7514]
+    }
+  },
+
     {
-      "name": "Galle Auto Care",
-      "district": "Galle",
+      "name": "Batticaloa Motors",
+      "district": "Batticaloa",
       "category": "Garages",
-      "city": "Galle",
+      "city": "Batticaloa",
       "vehicleTypes": ["Car/Van", "Motorcycles"],
-      "phoneNumber": "+94 77 123 4567",
-      "email": "galleautocare@example.com",
-      "mailAddress": "123 Main Street, Galle 80000, Sri Lanka",
+      "phoneNumber": "+94 77 123 7890",
+      "email": "batticaloa_motors@example.com",
+      "mailAddress": "22 Hospital Road, Batticaloa 30000, Sri Lanka",
       "location": {
         "type": "Point",
-        "coordinates": [80.217, 6.0535]
+        "coordinates": [81.7022, 7.7102]
       }
     },
     {
-      "name": "Colombo Filling Station",
-      "district": "Colombo",
-      "category": "Filling Station",
-      "city": "Colombo",
-      "vehicleTypes": ["All Types"],
-      "phoneNumber": "+94 77 987 6543",
-      "email": "colombofs@example.com",
-      "mailAddress": "456 Station Road, Colombo 00100, Sri Lanka",
-      "location": {
-        "type": "Point",
-        "coordinates": [79.8612, 6.9271]
-      }
-    },
-    {
-      "name": "Nugegoda Car Wash",
-      "district": "Colombo",
-      "category": "Car Wash",
-      "city": "Nugegoda",
-      "vehicleTypes": ["Car/Van", "Bus"],
-      "phoneNumber": "+94 71 222 3333",
-      "email": "nugegoda_carwash@example.com",
-      "mailAddress": "789 High Level Road, Nugegoda 10250, Sri Lanka",
-      "location": {
-        "type": "Point",
-        "coordinates": [79.9585, 6.8521]
-      }
-    },
-    {
-      "name": "Kandy Tire Shop",
-      "district": "Kandy",
-      "category": "Tire Shop",
-      "city": "Kandy",
-      "vehicleTypes": ["Car/Van", "Three Wheelers"],
-      "phoneNumber": "+94 75 345 6789",
-      "email": "kandytire@example.com",
-      "mailAddress": "21 Peradeniya Road, Kandy 20000, Sri Lanka",
-      "location": {
-        "type": "Point",
-        "coordinates": [80.635, 7.2906]
-      }
-    },
-    {
-      "name": "Gampaha Battery Center",
-      "district": "Gampaha",
+      "name": "Chilaw Battery Service",
+      "district": "Puttalam",
       "category": "Battery Shop",
-      "city": "Negombo",
-      "vehicleTypes": ["Car/Van", "Motorcycles", "Bus"],
-      "phoneNumber": "+94 76 456 7890",
-      "email": "gampahabattery@example.com",
-      "mailAddress": "32 Church Road, Negombo 11500, Sri Lanka",
-      "location": {
-        "type": "Point",
-        "coordinates": [79.844, 7.2008]
-      }
-    },
-    {
-      "name": "Matara Auto Parts",
-      "district": "Matara",
-      "category": "Auto Parts Shop",
-      "city": "Matara",
+      "city": "Chilaw",
       "vehicleTypes": ["All Types"],
-      "phoneNumber": "+94 70 123 7890",
-      "email": "mataraautoparts@example.com",
-      "mailAddress": "10 Main Street, Matara 81000, Sri Lanka",
+      "phoneNumber": "+94 76 234 8901",
+      "email": "chilaw_battery@example.com",
+      "mailAddress": "14 Main Street, Chilaw 61000, Sri Lanka",
       "location": {
         "type": "Point",
-        "coordinates": [80.535, 5.9485]
+        "coordinates": [79.7951, 7.5758]
       }
     },
     {
-      "name": "Hambantota AC Service",
-      "district": "Hambantota",
-      "category": "Auto AC Service",
-      "city": "Hambantota",
-      "vehicleTypes": ["Car/Van"],
-      "phoneNumber": "+94 72 987 1234",
-      "email": "hambantotaac@example.com",
-      "mailAddress": "35 Park Lane, Hambantota 82000, Sri Lanka",
+      "name": "Panadura Car Wash",
+      "district": "Kalutara",
+      "category": "Car Wash",
+      "city": "Panadura",
+      "vehicleTypes": ["Car/Van", "Three Wheelers"],
+      "phoneNumber": "+94 75 345 5678",
+      "email": "panadura_carwash@example.com",
+      "mailAddress": "78 Galle Road, Panadura 12500, Sri Lanka",
       "location": {
         "type": "Point",
-        "coordinates": [81.121, 6.124]
+        "coordinates": [79.907, 6.7118]
       }
     },
     {
-      "name": "Jaffna Cushion Works",
-      "district": "Jaffna",
-      "category": "Cushion Works Center",
-      "city": "Jaffna",
-      "vehicleTypes": ["Three Wheelers", "Motorcycles"],
-      "phoneNumber": "+94 74 111 2222",
-      "email": "jaffnacushion@example.com",
-      "mailAddress": "67 Stanley Road, Jaffna 40000, Sri Lanka",
-      "location": {
-        "type": "Point",
-        "coordinates": [80.0088, 9.6615]
-      }
-    },
-    {
-      "name": "Ratnapura Paint Shop",
+      "name": "Pelmadulla Auto Paints",
       "district": "Ratnapura",
       "category": "Paint Shop",
-      "city": "Ratnapura",
-      "vehicleTypes": ["Car/Van", "Three Wheelers"],
-      "phoneNumber": "+94 78 333 4444",
-      "email": "ratnapurapaint@example.com",
-      "mailAddress": "23 Gem Road, Ratnapura 70000, Sri Lanka",
+      "city": "Pelmadulla",
+      "vehicleTypes": ["Car/Van", "Bus"],
+      "phoneNumber": "+94 74 456 6789",
+      "email": "pelmadulla_paintshop@example.com",
+      "mailAddress": "50 Gem Street, Pelmadulla 70000, Sri Lanka",
       "location": {
         "type": "Point",
-        "coordinates": [80.399, 6.6828]
+        "coordinates": [80.5368, 6.6702]
       }
     },
     {
-      "name": "Trincomalee Vehicle Services",
-      "district": "Trincomalee",
-      "category": "Garages",
-      "city": "Trincomalee",
-      "vehicleTypes": ["All Types"],
-      "phoneNumber": "+94 73 555 6666",
-      "email": "trincomaleeservice@example.com",
-      "mailAddress": "2 Sea View Road, Trincomalee 31000, Sri Lanka",
+      "name": "Welimada Auto AC Solutions",
+      "district": "Badulla",
+      "category": "Auto AC Service",
+      "city": "Welimada",
+      "vehicleTypes": ["Car/Van"],
+      "phoneNumber": "+94 72 567 8902",
+      "email": "welimada_acsolutions@example.com",
+      "mailAddress": "12 Temple Road, Welimada 90200, Sri Lanka",
       "location": {
         "type": "Point",
-        "coordinates": [81.231, 8.5922]
+        "coordinates": [80.9404, 6.9019]
+      }
+    },
+    {
+      "name": "Hatton Vehicle Parts",
+      "district": "Nuwara Eliya",
+      "category": "Auto Parts Shop",
+      "city": "Hatton",
+      "vehicleTypes": ["All Types"],
+      "phoneNumber": "+94 70 678 1234",
+      "email": "hatton_autoparts@example.com",
+      "mailAddress": "98 Colombo Road, Hatton 22000, Sri Lanka",
+      "location": {
+        "type": "Point",
+        "coordinates": [80.6036, 6.8973]
+      }
+    },
+    {
+      "name": "Kurunegala Motor Hub",
+      "district": "Kurunegala",
+      "category": "Garages",
+      "city": "Kurunegala",
+      "vehicleTypes": ["Car/Van", "Motorcycles", "Bus"],
+      "phoneNumber": "+94 73 789 0123",
+      "email": "kurunegala_motorhub@example.com",
+      "mailAddress": "101 Lake Road, Kurunegala 60000, Sri Lanka",
+      "location": {
+        "type": "Point",
+        "coordinates": [80.367, 7.4863]
+      }
+    },
+    {
+      "name": "Ambalangoda Auto Spa",
+      "district": "Galle",
+      "category": "Car Wash",
+      "city": "Ambalangoda",
+      "vehicleTypes": ["Car/Van"],
+      "phoneNumber": "+94 71 890 2345",
+      "email": "ambalangoda_autospa@example.com",
+      "mailAddress": "67 Coastal Road, Ambalangoda 80300, Sri Lanka",
+      "location": {
+        "type": "Point",
+        "coordinates": [80.0564, 6.2356]
+      }
+    },
+    {
+      "name": "Dehiwala Tire World",
+      "district": "Colombo",
+      "category": "Tire Shop",
+      "city": "Dehiwala",
+      "vehicleTypes": ["Motorcycles", "Car/Van"],
+      "phoneNumber": "+94 78 123 4567",
+      "email": "dehiwala_tireworld@example.com",
+      "mailAddress": "39 Hill Street, Dehiwala 10350, Sri Lanka",
+      "location": {
+        "type": "Point",
+        "coordinates": [79.8686, 6.8528]
+      }
+    },
+    {
+      "name": "Point Pedro Cushion Shop",
+      "district": "Jaffna",
+      "category": "Cushion Works Center",
+      "city": "Point Pedro",
+      "vehicleTypes": ["Three Wheelers", "Motorcycles"],
+      "phoneNumber": "+94 75 987 6543",
+      "email": "pointpedro_cushion@example.com",
+      "mailAddress": "25 Main Road, Point Pedro 40000, Sri Lanka",
+      "location": {
+        "type": "Point",
+        "coordinates": [80.2373, 9.8166]
+      }
+    },
+    {
+      "name": "Galle Repair Center",
+      "district": "Galle",
+      "category": "Garages",
+      "city": "Hikkaduwa",
+      "vehicleTypes": ["Car/Van", "Bus"],
+      "phoneNumber": "+94 79 345 6789",
+      "email": "galle_repaircenter@example.com",
+      "mailAddress": "45 Station Road, Hikkaduwa 80240, Sri Lanka",
+      "location": {
+        "type": "Point",
+        "coordinates": [80.1132, 6.139]
+      }
+    },
+    {
+      "name": "Kataragama Filling Point",
+      "district": "Moneragala",
+      "category": "Filling Station",
+      "city": "Kataragama",
+      "vehicleTypes": ["All Types"],
+      "phoneNumber": "+94 76 456 2345",
+      "email": "kataragama_filling@example.com",
+      "mailAddress": "102 Shrine Road, Kataragama 91400, Sri Lanka",
+      "location": {
+        "type": "Point",
+        "coordinates": [81.3424, 6.4195]
+      }
+    },
+    {
+      "name": "Sigiriya Vehicle Repair",
+      "district": "Matale",
+      "category": "Garages",
+      "city": "Sigiriya",
+      "vehicleTypes": ["Bus", "Car/Van"],
+      "phoneNumber": "+94 72 555 4321",
+      "email": "sigiriya_repair@example.com",
+      "mailAddress": "8 Lion's Rock Street, Sigiriya 21120, Sri Lanka",
+      "location": {
+        "type": "Point",
+        "coordinates": [80.7483, 7.9519]
+      }
+    },
+    {
+      "name": "Ella Car Wash Experts",
+      "district": "Badulla",
+      "category": "Car Wash",
+      "city": "Ella",
+      "vehicleTypes": ["All Types"],
+      "phoneNumber": "+94 75 678 9012",
+      "email": "ella_carwash@example.com",
+      "mailAddress": "33 Little Adams Peak Road, Ella 90090, Sri Lanka",
+      "location": {
+        "type": "Point",
+        "coordinates": [81.0462, 6.8688]
       }
     }
-  ]
+]
   
+
+

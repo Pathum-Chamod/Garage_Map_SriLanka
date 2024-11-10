@@ -12,22 +12,11 @@ function Dashboard() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [selectedDistrict, setSelectedDistrict] = useState('All of Sri Lanka');
-  const [selectedCity, setSelectedCity] = useState('');
   const [selectedService, setSelectedService] = useState('All Services');
   const [selectedVehicle, setSelectedVehicle] = useState('All Types');
 
   // Access auth context if available
   const { token } = useContext(AuthContext);
-
-  // Get the list of cities based on the selected district
-  const getCitiesForDistrict = () => {
-    const district = districts.find((d) => d.name === selectedDistrict);
-    if (district) {
-      // Insert "All of [District]" only once and at the beginning
-      return [`All of ${selectedDistrict}`, ...district.cities.filter(city => city !== `All of ${selectedDistrict}`)];
-    }
-    return [];
-  };
 
   // Use useCallback to memoize the fetchGarages function
   const fetchGarages = useCallback(async () => {
@@ -40,7 +29,6 @@ function Dashboard() {
         headers: { Authorization: `Bearer ${token}` }, // Use token from context
         params: {
           district: selectedDistrict !== 'All of Sri Lanka' ? selectedDistrict : undefined,
-          city: selectedCity && selectedCity !== `All of ${selectedDistrict}` ? selectedCity : undefined,
           service: selectedService !== 'All Services' ? selectedService : undefined,
           vehicle: selectedVehicle !== 'All Types' ? selectedVehicle : undefined,
         },
@@ -53,7 +41,7 @@ function Dashboard() {
     } finally {
       setLoading(false);
     }
-  }, [selectedDistrict, selectedCity, selectedService, selectedVehicle, token]);
+  }, [selectedDistrict, selectedService, selectedVehicle, token]);
 
   // Fetch data on component mount and when filters change
   useEffect(() => {
@@ -72,10 +60,7 @@ function Dashboard() {
           <select
             id="district-select"
             value={selectedDistrict}
-            onChange={(e) => {
-              setSelectedDistrict(e.target.value);
-              setSelectedCity(`All of ${e.target.value}`); // Set default city to "All of [District]"
-            }}
+            onChange={(e) => setSelectedDistrict(e.target.value)}
             className="filter-dropdown"
           >
             {districts.map((district) => (
@@ -83,23 +68,6 @@ function Dashboard() {
             ))}
           </select>
         </div>
-
-        {/* City Filter - Only show if a specific district is selected */}
-        {selectedDistrict !== 'All of Sri Lanka' && (
-          <div className="filter-container">
-            <label htmlFor="city-select">Filter by City:</label>
-            <select
-              id="city-select"
-              value={selectedCity}
-              onChange={(e) => setSelectedCity(e.target.value)}
-              className="filter-dropdown"
-            >
-              {getCitiesForDistrict().map((city) => (
-                <option key={city} value={city}>{city}</option>
-              ))}
-            </select>
-          </div>
-        )}
 
         {/* Service Category Filter */}
         <div className="filter-container">
@@ -130,15 +98,6 @@ function Dashboard() {
             ))}
           </select>
         </div>
-
-        {/* Search Button */}
-        <button 
-          className="search-button" 
-          onClick={fetchGarages} 
-          disabled={loading}
-        >
-          {loading ? 'Searching...' : 'Search'}
-        </button>
       </div>
 
       {/* Show Error if exists */}
