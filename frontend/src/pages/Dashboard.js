@@ -14,6 +14,9 @@ function Dashboard() {
   const [selectedDistrict, setSelectedDistrict] = useState('All of Sri Lanka');
   const [selectedService, setSelectedService] = useState('All Services');
   const [selectedVehicle, setSelectedVehicle] = useState('All Types');
+  const [selectedCoordinates, setSelectedCoordinates] = useState(null);
+  const [locateUser, setLocateUser] = useState(false);
+  const [selectedGarage, setSelectedGarage] = useState(null);
 
   // Access auth context if available
   const { token } = useContext(AuthContext);
@@ -26,7 +29,7 @@ function Dashboard() {
 
       // Fetch garages with filters
       const response = await axios.get('http://localhost:5001/api/garages', {
-        headers: { Authorization: `Bearer ${token}` }, // Use token from context
+        headers: { Authorization: `Bearer ${token}` },
         params: {
           district: selectedDistrict !== 'All of Sri Lanka' ? selectedDistrict : undefined,
           service: selectedService !== 'All Services' ? selectedService : undefined,
@@ -47,6 +50,18 @@ function Dashboard() {
   useEffect(() => {
     fetchGarages(); // Fetch data when dependencies change
   }, [fetchGarages]); // Include fetchGarages in the dependency array
+
+  const handleGarageClick = (garage) => {
+    setSelectedCoordinates({
+      lat: garage.location.coordinates[1],
+      lng: garage.location.coordinates[0],
+    });
+    setSelectedGarage(garage);
+  };
+
+  const handleLocateMeClick = () => {
+    setLocateUser(true);
+  };
 
   return (
     <div className="dashboard-container">
@@ -98,6 +113,15 @@ function Dashboard() {
             ))}
           </select>
         </div>
+
+        {/* Locate Me Button */}
+        <button
+          className="locate-me-button"
+          onClick={handleLocateMeClick}
+          style={{ marginTop: '20px', padding: '10px', fontSize: '1rem', cursor: 'pointer' }}
+        >
+          Locate Me
+        </button>
       </div>
 
       {/* Show Error if exists */}
@@ -108,10 +132,20 @@ function Dashboard() {
         <p className="loading-text">Loading...</p>
       ) : (
         <div style={{ marginTop: '20px' }}>
-          <MapComponent garages={garages} />
+          <MapComponent
+            garages={garages}
+            selectedCoordinates={selectedCoordinates}
+            locateUser={locateUser}
+            selectedGarage={selectedGarage}
+          />
           <ul className="garage-list">
             {garages.map((garage) => (
-              <li key={garage._id} className="garage-item">
+              <li
+                key={garage._id}
+                className="garage-item"
+                onClick={() => handleGarageClick(garage)}
+                style={{ cursor: 'pointer' }}
+              >
                 <strong>{garage.name}</strong> - {garage.city}
               </li>
             ))}
