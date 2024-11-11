@@ -1,13 +1,11 @@
 import { Circle, DirectionsRenderer, GoogleMap, InfoWindow, LoadScript, Marker } from '@react-google-maps/api';
 import React, { useCallback, useEffect, useState } from 'react';
 
-// Define container style for the map
 const containerStyle = {
   width: '100%',
-  height: '500px', // Adjust the height to your preference
+  height: '500px',
 };
 
-// Set a default center (example: Colombo, Sri Lanka)
 const defaultCenter = {
   lat: 6.9271,
   lng: 79.8612,
@@ -21,7 +19,6 @@ function MapComponent({ garages = [], selectedCoordinates, locateUser, selectedG
 
   const googleMapsApiKey = 'AIzaSyDqiRKcbDS4OX8B8gx5TJUTYoBvBibn8f4';
 
-  // Effect for focusing on user location when `locateUser` is triggered
   useEffect(() => {
     if (locateUser && userLocation && map) {
       map.panTo(userLocation);
@@ -29,7 +26,6 @@ function MapComponent({ garages = [], selectedCoordinates, locateUser, selectedG
     }
   }, [locateUser, userLocation, map]);
 
-  // Effect for focusing on selected garage when `selectedGarage` changes
   useEffect(() => {
     if (selectedGarage && map) {
       map.panTo({
@@ -40,7 +36,6 @@ function MapComponent({ garages = [], selectedCoordinates, locateUser, selectedG
     }
   }, [selectedGarage, map]);
 
-  // Start live location tracking when the component mounts or `geoWatchId` is null
   const startLiveLocationTracking = useCallback(() => {
     if (navigator.geolocation && geoWatchId === null) {
       const watchId = navigator.geolocation.watchPosition(
@@ -50,10 +45,6 @@ function MapComponent({ garages = [], selectedCoordinates, locateUser, selectedG
             lng: position.coords.longitude,
           };
           setUserLocation(currentPosition);
-          if (locateUser && map) {
-            map.panTo(currentPosition);
-            map.setZoom(16);
-          }
         },
         (error) => {
           console.error('Error fetching location:', error);
@@ -64,9 +55,8 @@ function MapComponent({ garages = [], selectedCoordinates, locateUser, selectedG
     } else if (!navigator.geolocation) {
       console.error('Geolocation is not supported by this browser.');
     }
-  }, [map, locateUser, geoWatchId]);
+  }, [geoWatchId]);
 
-  // Stop live location tracking
   const stopLiveLocationTracking = useCallback(() => {
     if (geoWatchId !== null) {
       navigator.geolocation.clearWatch(geoWatchId);
@@ -74,14 +64,11 @@ function MapComponent({ garages = [], selectedCoordinates, locateUser, selectedG
     }
   }, [geoWatchId]);
 
-  // Effect for starting/stopping geolocation tracking
   useEffect(() => {
     startLiveLocationTracking();
-    // Clean up the watch on unmount
     return () => stopLiveLocationTracking();
   }, [startLiveLocationTracking, stopLiveLocationTracking]);
 
-  // Function to get directions to the selected garage from the user's current location
   const getDirections = (destination) => {
     if (userLocation) {
       const DirectionsService = new window.google.maps.DirectionsService();
@@ -116,7 +103,6 @@ function MapComponent({ garages = [], selectedCoordinates, locateUser, selectedG
           zoomControl: true,
         }}
       >
-        {/* Display user's current location as a blue circle */}
         {userLocation && (
           <Circle
             center={userLocation}
@@ -131,18 +117,6 @@ function MapComponent({ garages = [], selectedCoordinates, locateUser, selectedG
           />
         )}
 
-        {/* Display marker for the selected garage */}
-        {selectedCoordinates && (
-          <Marker
-            position={selectedCoordinates}
-            title="Selected Garage"
-            icon={{
-              url: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png', // Red pin for selected garage
-            }}
-          />
-        )}
-
-        {/* Display markers for each garage */}
         {garages.length > 0 &&
           garages.map((garage) => (
             <Marker
@@ -158,7 +132,6 @@ function MapComponent({ garages = [], selectedCoordinates, locateUser, selectedG
             />
           ))}
 
-        {/* Display InfoWindow for the selected garage */}
         {selectedGarage && (
           <InfoWindow
             position={{
@@ -185,7 +158,6 @@ function MapComponent({ garages = [], selectedCoordinates, locateUser, selectedG
           </InfoWindow>
         )}
 
-        {/* Display directions if available */}
         {directionsResponse && <DirectionsRenderer directions={directionsResponse} />}
       </GoogleMap>
     </LoadScript>
