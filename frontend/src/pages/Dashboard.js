@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useCallback, useContext, useEffect, useState } from 'react';
 import MapComponent from '../components/MapComponent';
-import { AuthContext } from '../context/AuthContext'; // Import AuthContext
+import { AuthContext } from '../context/AuthContext';
 import { districts } from '../districts';
 import { serviceCategories } from '../services';
 import { vehicleTypes } from '../vehicleTypes';
@@ -18,16 +18,14 @@ function Dashboard() {
   const [locateUser, setLocateUser] = useState(false);
   const [selectedGarage, setSelectedGarage] = useState(null);
 
-  // Access auth context if available
   const { token } = useContext(AuthContext);
 
-  // Use useCallback to memoize the fetchGarages function
+  // Fetch garages with filters
   const fetchGarages = useCallback(async () => {
     try {
       setLoading(true);
-      setError(''); // Clear any previous errors
+      setError('');
 
-      // Fetch garages with filters
       const response = await axios.get('http://localhost:5001/api/garages', {
         headers: { Authorization: `Bearer ${token}` },
         params: {
@@ -46,10 +44,9 @@ function Dashboard() {
     }
   }, [selectedDistrict, selectedService, selectedVehicle, token]);
 
-  // Fetch data on component mount and when filters change
   useEffect(() => {
-    fetchGarages(); // Fetch data when dependencies change
-  }, [fetchGarages]); // Include fetchGarages in the dependency array
+    fetchGarages();
+  }, [fetchGarages]);
 
   const handleGarageClick = (garage) => {
     setSelectedCoordinates({
@@ -57,21 +54,19 @@ function Dashboard() {
       lng: garage.location.coordinates[0],
     });
     setSelectedGarage(garage);
-    setLocateUser(false); // Stop focusing on user location when a garage is clicked
+    setLocateUser(false);
   };
 
   const handleLocateMeClick = () => {
     setLocateUser(true);
-    setSelectedCoordinates(null); // Clear selected garage coordinates when locating user
+    setSelectedCoordinates(null);
   };
 
   return (
     <div className="dashboard-container">
       <h2 className="dashboard-title">Dashboard</h2>
 
-      {/* Filters Section */}
       <div className="filters-section">
-        {/* Location Filter */}
         <div className="filter-container">
           <label htmlFor="district-select">Select Location:</label>
           <select
@@ -86,7 +81,6 @@ function Dashboard() {
           </select>
         </div>
 
-        {/* Service Category Filter */}
         <div className="filter-container">
           <label htmlFor="service-select">Service Category:</label>
           <select
@@ -101,7 +95,6 @@ function Dashboard() {
           </select>
         </div>
 
-        {/* Vehicle Type Filter */}
         <div className="filter-container">
           <label htmlFor="vehicle-select">Vehicle Type:</label>
           <select
@@ -116,7 +109,6 @@ function Dashboard() {
           </select>
         </div>
 
-        {/* Locate Me Button */}
         <button
           className="locate-me-button"
           onClick={handleLocateMeClick}
@@ -126,10 +118,8 @@ function Dashboard() {
         </button>
       </div>
 
-      {/* Show Error if exists */}
       {error && <p className="error-text">{error}</p>}
 
-      {/* Show Results */}
       {loading ? (
         <p className="loading-text">Loading...</p>
       ) : (
@@ -139,6 +129,7 @@ function Dashboard() {
             selectedCoordinates={selectedCoordinates}
             locateUser={locateUser}
             selectedGarage={selectedGarage}
+            setSelectedGarage={setSelectedGarage}
           />
           <ul className="garage-list">
             {garages.map((garage) => (

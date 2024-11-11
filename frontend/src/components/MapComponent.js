@@ -1,4 +1,4 @@
-import { Circle, DirectionsRenderer, GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
+import { Circle, DirectionsRenderer, GoogleMap, InfoWindow, LoadScript, Marker } from '@react-google-maps/api';
 import React, { useCallback, useEffect, useState } from 'react';
 
 // Define container style for the map
@@ -13,7 +13,7 @@ const defaultCenter = {
   lng: 79.8612,
 };
 
-function MapComponent({ garages = [], selectedCoordinates, locateUser }) {
+function MapComponent({ garages = [], selectedCoordinates, locateUser, selectedGarage, setSelectedGarage }) {
   const [directionsResponse, setDirectionsResponse] = useState(null);
   const [map, setMap] = useState(null);
   const [userLocation, setUserLocation] = useState(null);
@@ -24,11 +24,21 @@ function MapComponent({ garages = [], selectedCoordinates, locateUser }) {
   // Effect for focusing on user location when `locateUser` is triggered
   useEffect(() => {
     if (locateUser && userLocation && map) {
-      // Pan and zoom to the user's current location
       map.panTo(userLocation);
       map.setZoom(16);
     }
   }, [locateUser, userLocation, map]);
+
+  // Effect for focusing on selected garage when `selectedGarage` changes
+  useEffect(() => {
+    if (selectedGarage && map) {
+      map.panTo({
+        lat: selectedGarage.location.coordinates[1],
+        lng: selectedGarage.location.coordinates[0],
+      });
+      map.setZoom(16);
+    }
+  }, [selectedGarage, map]);
 
   // Start live location tracking when the component mounts or `geoWatchId` is null
   const startLiveLocationTracking = useCallback(() => {
@@ -40,7 +50,7 @@ function MapComponent({ garages = [], selectedCoordinates, locateUser }) {
             lng: position.coords.longitude,
           };
           setUserLocation(currentPosition);
-          if (map && locateUser) {
+          if (locateUser && map) {
             map.panTo(currentPosition);
             map.setZoom(16);
           }
@@ -95,7 +105,7 @@ function MapComponent({ garages = [], selectedCoordinates, locateUser }) {
   };
 
   return (
-    <LoadScript googleMapsApiKey={googleMapsApiKey} libraries={["places"]}>
+    <LoadScript googleMapsApiKey={googleMapsApiKey}>
       <GoogleMap
         mapContainerStyle={containerStyle}
         center={selectedCoordinates || userLocation || defaultCenter}
@@ -104,9 +114,6 @@ function MapComponent({ garages = [], selectedCoordinates, locateUser }) {
         options={{
           disableDefaultUI: true,
           zoomControl: true,
-          mapTypeControl: false,
-          streetViewControl: false,
-          fullscreenControl: false,
         }}
       >
         {/* Display user's current location as a blue circle */}
@@ -136,22 +143,47 @@ function MapComponent({ garages = [], selectedCoordinates, locateUser }) {
         )}
 
         {/* Display markers for each garage */}
-        {garages && garages.length > 0 && garages.map((garage) => (
-          <Marker
-            key={garage._id}
-            position={{
-              lat: garage.location.coordinates[1], // Latitude
-              lng: garage.location.coordinates[0], // Longitude
-            }}
-            title={garage.name}
-            onClick={() =>
-              getDirections({
+        {garages.length > 0 &&
+          garages.map((garage) => (
+            <Marker
+              key={garage._id}
+              position={{
                 lat: garage.location.coordinates[1],
                 lng: garage.location.coordinates[0],
-              })
-            }
-          />
-        ))}
+              }}
+              title={garage.name}
+              onClick={() => {
+                setSelectedGarage(garage);
+              }}
+            />
+          ))}
+
+        {/* Display InfoWindow for the selected garage */}
+        {selectedGarage && (
+          <InfoWindow
+            position={{
+              lat: selectedGarage.location.coordinates[1],
+              lng: selectedGarage.location.coordinates[0],
+            }}
+            onCloseClick={() => setSelectedGarage(null)}
+          >
+            <div className="info-window">
+              <h4>{selectedGarage.name}</h4>
+              <p>Address: {selectedGarage.mailAddress}</p>
+              <p>Telephone: {selectedGarage.phoneNumber}</p>
+              <button
+                onClick={() =>
+                  getDirections({
+                    lat: selectedGarage.location.coordinates[1],
+                    lng: selectedGarage.location.coordinates[0],
+                  })
+                }
+              >
+                Get Directions
+              </button>
+            </div>
+          </InfoWindow>
+        )}
 
         {/* Display directions if available */}
         {directionsResponse && <DirectionsRenderer directions={directionsResponse} />}

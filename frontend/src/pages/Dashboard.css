@@ -19,32 +19,6 @@
   text-align: center;
 }
 
-/* Authentication Button Container */
-.auth-button-container {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 20px;
-}
-
-/* Login/Logout Button */
-.login-button,
-.logout-button {
-  padding: 10px 20px;
-  font-size: 1rem;
-  cursor: pointer;
-  border: none;
-  border-radius: 5px;
-  background-color: #007bff;
-  color: white;
-  transition: background-color 0.3s ease;
-  margin: 0 10px;
-}
-
-.login-button:hover,
-.logout-button:hover {
-  background-color: #0056b3;
-}
-
 /* Filters Section */
 .filters-section {
   display: grid;
@@ -77,26 +51,22 @@
   background-color: #f7f7f7;
 }
 
-/* Search Button */
-.search-button {
+/* Locate Me Button */
+.locate-me-button {
   padding: 10px 20px;
   font-size: 1rem;
   cursor: pointer;
   border: none;
   border-radius: 5px;
-  background-color: #28a745;
+  background-color: #007bff;
   color: white;
   transition: background-color 0.3s ease;
-  grid-column: span 2; /* Stretch across two columns on wider screens */
+  margin: 0 auto; /* Center the button */
+  display: block;
 }
 
-.search-button:disabled {
-  background-color: #ccc;
-  cursor: not-allowed;
-}
-
-.search-button:hover:not(:disabled) {
-  background-color: #218838;
+.locate-me-button:hover {
+  background-color: #0056b3;
 }
 
 /* Error Text */
@@ -128,8 +98,43 @@
   border-radius: 5px;
   margin-bottom: 10px;
   transition: background-color 0.3s ease;
+  cursor: pointer;
 }
 
 .garage-item:hover {
   background-color: #f0f0f0;
+}
+
+/* InfoWindow Styling */
+.info-window {
+  max-width: 200px;
+  padding: 10px;
+}
+
+.info-window h4 {
+  font-size: 1rem;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.info-window p {
+  font-size: 0.9rem;
+  color: #555;
+  margin: 2px 0;
+}
+
+.info-window button {
+  padding: 5px 10px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  border: none;
+  border-radius: 3px;
+  background-color: #28a745;
+  color: white;
+  transition: background-color 0.3s ease;
+  margin-top: 5px;
+}
+
+.info-window button:hover {
+  background-color: #218838;
 }
