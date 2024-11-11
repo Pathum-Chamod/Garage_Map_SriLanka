@@ -13,13 +13,22 @@ const defaultCenter = {
   lng: 79.8612,
 };
 
-function MapComponent({ garages, selectedCoordinates, locateUser }) {
+function MapComponent({ garages = [], selectedCoordinates, locateUser }) {
   const [directionsResponse, setDirectionsResponse] = useState(null);
   const [map, setMap] = useState(null);
   const [userLocation, setUserLocation] = useState(null);
   const [geoWatchId, setGeoWatchId] = useState(null);
 
   const googleMapsApiKey = 'AIzaSyDqiRKcbDS4OX8B8gx5TJUTYoBvBibn8f4';
+
+  // Effect for focusing on user location when `locateUser` is triggered
+  useEffect(() => {
+    if (locateUser && userLocation && map) {
+      // Pan and zoom to the user's current location
+      map.panTo(userLocation);
+      map.setZoom(16);
+    }
+  }, [locateUser, userLocation, map]);
 
   // Start live location tracking when the component mounts or `geoWatchId` is null
   const startLiveLocationTracking = useCallback(() => {
@@ -61,15 +70,6 @@ function MapComponent({ garages, selectedCoordinates, locateUser }) {
     // Clean up the watch on unmount
     return () => stopLiveLocationTracking();
   }, [startLiveLocationTracking, stopLiveLocationTracking]);
-
-  // Effect for focusing on user location when `locateUser` is triggered
-  useEffect(() => {
-    if (locateUser && userLocation && map) {
-      // Pan and zoom to the user's current location
-      map.panTo(userLocation);
-      map.setZoom(16);
-    }
-  }, [locateUser, userLocation, map]);
 
   // Function to get directions to the selected garage from the user's current location
   const getDirections = (destination) => {
@@ -129,7 +129,7 @@ function MapComponent({ garages, selectedCoordinates, locateUser }) {
         )}
 
         {/* Display markers for each garage */}
-        {garages.map((garage) => (
+        {garages && garages.length > 0 && garages.map((garage) => (
           <Marker
             key={garage._id}
             position={{
