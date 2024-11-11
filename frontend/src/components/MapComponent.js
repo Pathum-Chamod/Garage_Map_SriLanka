@@ -164,4 +164,4 @@ function MapComponent({ garages = [], selectedCoordinates, locateUser, selectedG
   );
 }
 
-export default MapComponent;
+export default MapComponent; //fine_code!
