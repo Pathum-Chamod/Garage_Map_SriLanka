@@ -57,10 +57,12 @@ function Dashboard() {
       lng: garage.location.coordinates[0],
     });
     setSelectedGarage(garage);
+    setLocateUser(false); // Stop focusing on user location when a garage is clicked
   };
 
   const handleLocateMeClick = () => {
     setLocateUser(true);
+    setSelectedCoordinates(null); // Clear selected garage coordinates when locating user
   };
 
   return (

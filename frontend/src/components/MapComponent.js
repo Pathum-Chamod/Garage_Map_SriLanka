@@ -48,7 +48,7 @@ function MapComponent({ garages = [], selectedCoordinates, locateUser }) {
         (error) => {
           console.error('Error fetching location:', error);
         },
-        { enableHighAccuracy: true }
+        { enableHighAccuracy: true, maximumAge: 0, timeout: 10000 }
       );
       setGeoWatchId(watchId);
     } else if (!navigator.geolocation) {
@@ -95,12 +95,19 @@ function MapComponent({ garages = [], selectedCoordinates, locateUser }) {
   };
 
   return (
-    <LoadScript googleMapsApiKey={googleMapsApiKey}>
+    <LoadScript googleMapsApiKey={googleMapsApiKey} libraries={["places"]}>
       <GoogleMap
         mapContainerStyle={containerStyle}
         center={selectedCoordinates || userLocation || defaultCenter}
         zoom={10}
         onLoad={(map) => setMap(map)}
+        options={{
+          disableDefaultUI: true,
+          zoomControl: true,
+          mapTypeControl: false,
+          streetViewControl: false,
+          fullscreenControl: false,
+        }}
       >
         {/* Display user's current location as a blue circle */}
         {userLocation && (
