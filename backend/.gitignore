@@ -4,6 +4,9 @@ node_modules
 # Environment variables
 .env
 
+#MONGO_URI=mongodb+srv://XXXXXX:xxxxx@xxxxx.osteb.mongodb.net/?retryWrites=true&w=majority&appName=XXXXXX
+#JWT_SECRET=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
 # Logs
 *.log
 
