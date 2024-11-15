@@ -11,16 +11,17 @@ function Dashboard() {
   const [garages, setGarages] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
-  const [selectedDistrict, setSelectedDistrict] = useState('All of Sri Lanka');
+  const [selectedDistrict, setSelectedDistrict] = useState('');
   const [selectedService, setSelectedService] = useState('All Services');
   const [selectedVehicle, setSelectedVehicle] = useState('All Types');
   const [selectedCoordinates, setSelectedCoordinates] = useState(null);
   const [locateUser, setLocateUser] = useState(false);
   const [selectedGarage, setSelectedGarage] = useState(null);
+  const [filteredGarages, setFilteredGarages] = useState([]);
 
   const { token } = useContext(AuthContext);
 
-  // Fetch garages with filters
+  // Fetch garages from API
   const fetchGarages = useCallback(async () => {
     try {
       setLoading(true);
@@ -28,38 +29,70 @@ function Dashboard() {
 
       const response = await axios.get('http://localhost:5001/api/garages', {
         headers: { Authorization: `Bearer ${token}` },
-        params: {
-          district: selectedDistrict !== 'All of Sri Lanka' ? selectedDistrict : undefined,
-          service: selectedService !== 'All Services' ? selectedService : undefined,
-          vehicle: selectedVehicle !== 'All Types' ? selectedVehicle : undefined,
-        },
       });
 
       setGarages(response.data);
+      setFilteredGarages([]); // Initially set filtered garages as empty
     } catch (error) {
       console.error('Error fetching garages', error);
       setError('Failed to fetch garages. Please try again later.');
     } finally {
       setLoading(false);
     }
-  }, [selectedDistrict, selectedService, selectedVehicle, token]);
+  }, [token]);
 
   useEffect(() => {
     fetchGarages();
   }, [fetchGarages]);
 
+  // Filter garages based on user selection
+  useEffect(() => {
+    if (
+      selectedDistrict === '' &&
+      selectedService === 'All Services' &&
+      selectedVehicle === 'All Types'
+    ) {
+      setFilteredGarages([]); // No filters applied, hide the list
+    } else {
+      const filtered = garages.filter((garage) => {
+        return (
+          (selectedDistrict === '' || garage.district === selectedDistrict) &&
+          (selectedService === 'All Services' || garage.category === selectedService) &&
+          (selectedVehicle === 'All Types' || garage.vehicleTypes.includes(selectedVehicle))
+        );
+      });
+
+      setFilteredGarages(filtered);
+    }
+  }, [garages, selectedDistrict, selectedService, selectedVehicle]);
+
+  // Handle click on a filtered garage
   const handleGarageClick = (garage) => {
+    setSelectedGarage(garage);
     setSelectedCoordinates({
       lat: garage.location.coordinates[1],
       lng: garage.location.coordinates[0],
     });
-    setSelectedGarage(garage);
     setLocateUser(false);
   };
 
+  // Locate the user when the "Locate Me" button is clicked
   const handleLocateMeClick = () => {
-    setLocateUser(true);
-    setSelectedCoordinates(null);
+    setLocateUser(false); // Reset locateUser first to ensure subsequent clicks work
+    setTimeout(() => {
+      setLocateUser(true);
+      setSelectedCoordinates(null);
+    }, 0);
+  };
+
+  const handleDistrictChange = (e) => {
+    const value = e.target.value;
+    setSelectedDistrict(value);
+    if (value === '') {
+      setFilteredGarages([]);
+      setSelectedGarage(null);
+      setSelectedCoordinates(null);
+    }
   };
 
   return (
@@ -72,11 +105,13 @@ function Dashboard() {
           <select
             id="district-select"
             value={selectedDistrict}
-            onChange={(e) => setSelectedDistrict(e.target.value)}
+            onChange={handleDistrictChange}
             className="filter-dropdown"
           >
             {districts.map((district) => (
-              <option key={district.name} value={district.name}>{district.name}</option>
+              <option key={district.name} value={district.name}>
+                {district.name}
+              </option>
             ))}
           </select>
         </div>
@@ -90,7 +125,9 @@ function Dashboard() {
             className="filter-dropdown"
           >
             {serviceCategories.map((service) => (
-              <option key={service} value={service}>{service}</option>
+              <option key={service} value={service}>
+                {service}
+              </option>
             ))}
           </select>
         </div>
@@ -104,7 +141,9 @@ function Dashboard() {
             className="filter-dropdown"
           >
             {vehicleTypes.map((vehicle) => (
-              <option key={vehicle} value={vehicle}>{vehicle}</option>
+              <option key={vehicle} value={vehicle}>
+                {vehicle}
+              </option>
             ))}
           </select>
         </div>
@@ -125,24 +164,27 @@ function Dashboard() {
       ) : (
         <div style={{ marginTop: '20px' }}>
           <MapComponent
-            garages={garages}
+            garages={filteredGarages.length > 0 ? filteredGarages : []}
             selectedCoordinates={selectedCoordinates}
             locateUser={locateUser}
             selectedGarage={selectedGarage}
             setSelectedGarage={setSelectedGarage}
           />
-          <ul className="garage-list">
-            {garages.map((garage) => (
-              <li
-                key={garage._id}
-                className="garage-item"
-                onClick={() => handleGarageClick(garage)}
-                style={{ cursor: 'pointer' }}
-              >
-                <strong>{garage.name}</strong> - {garage.city}
-              </li>
-            ))}
-          </ul>
+          {/* Show filtered garages list only if there are filtered results */}
+          {filteredGarages.length > 0 && (
+            <ul className="garage-list">
+              {filteredGarages.map((garage) => (
+                <li
+                  key={garage._id}
+                  className="garage-item"
+                  onClick={() => handleGarageClick(garage)}
+                  style={{ cursor: 'pointer' }}
+                >
+                  <strong>{garage.name}</strong> - {garage.city}
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
       )}
     </div>

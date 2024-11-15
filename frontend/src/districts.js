@@ -1,6 +1,6 @@
 export const districts = [
   {
-    name: 'All of Sri Lanka',
+    name: 'Select a District',
     cities: [],
   },
   {

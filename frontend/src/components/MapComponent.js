@@ -69,23 +69,39 @@ function MapComponent({ garages = [], selectedCoordinates, locateUser, selectedG
     return () => stopLiveLocationTracking();
   }, [startLiveLocationTracking, stopLiveLocationTracking]);
 
+  // Function to get directions to the selected garage
   const getDirections = (destination) => {
     if (userLocation) {
-      const DirectionsService = new window.google.maps.DirectionsService();
-      DirectionsService.route(
-        {
-          origin: userLocation,
-          destination: destination,
-          travelMode: window.google.maps.TravelMode.DRIVING,
-        },
-        (result, status) => {
-          if (status === window.google.maps.DirectionsStatus.OK) {
-            setDirectionsResponse(result);
-          } else {
-            console.error(`Error fetching directions: ${status}`);
-          }
-        }
+      // Ask the user if they want to open Google Maps
+      const userConfirmed = window.confirm(
+        'Do you want to open Google Maps for directions? Click "OK" to open Google Maps or "Cancel" to view directions here.'
       );
+
+      if (userConfirmed) {
+        // If user wants to open Google Maps, construct the Google Maps URL and open it
+        const googleMapsUrl = `https://www.google.com/maps/dir/?api=1&origin=${userLocation.lat},${userLocation.lng}&destination=${destination.lat},${destination.lng}&travelmode=driving`;
+        window.open(googleMapsUrl, '_blank');
+      } else {
+        // Otherwise, get the directions on the current map
+        const DirectionsService = new window.google.maps.DirectionsService();
+        DirectionsService.route(
+          {
+            origin: userLocation,
+            destination: destination,
+            travelMode: window.google.maps.TravelMode.DRIVING,
+          },
+          (result, status) => {
+            if (status === window.google.maps.DirectionsStatus.OK) {
+              setDirectionsResponse(result);
+            } else {
+              console.error(`Error fetching directions: ${status}`);
+            }
+          }
+        );
+      }
+
+      // Close the InfoWindow after getting directions
+      setSelectedGarage(null);
     } else {
       console.error('User location is not available.');
     }
@@ -164,4 +180,4 @@ function MapComponent({ garages = [], selectedCoordinates, locateUser, selectedG
   );
 }
 
-export default MapComponent; //fine_code!
+export default MapComponent;
