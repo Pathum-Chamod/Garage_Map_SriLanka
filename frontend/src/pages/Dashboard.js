@@ -78,11 +78,8 @@ function Dashboard() {
 
   // Locate the user when the "Locate Me" button is clicked
   const handleLocateMeClick = () => {
-    setLocateUser(false); // Reset locateUser first to ensure subsequent clicks work
-    setTimeout(() => {
-      setLocateUser(true);
-      setSelectedCoordinates(null);
-    }, 0);
+    setLocateUser(true);
+    setSelectedCoordinates(null);
   };
 
   const handleDistrictChange = (e) => {
@@ -108,11 +105,14 @@ function Dashboard() {
             onChange={handleDistrictChange}
             className="filter-dropdown"
           >
-            {districts.map((district) => (
-              <option key={district.name} value={district.name}>
-                {district.name}
-              </option>
-            ))}
+            
+            {districts
+              .filter((district) => district.name !== 'All of Sri Lanka')
+              .map((district) => (
+                <option key={district.name} value={district.name}>
+                  {district.name}
+                </option>
+              ))}
           </select>
         </div>
 
